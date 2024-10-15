@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/dicedb/dice/internal/clientio"
-	redis "github.com/dicedb/go-dice"
+	dicedb "github.com/dicedb/dicedb-go"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -129,16 +129,16 @@ func TestGETWATCHWithSDK2(t *testing.T) {
 	for i, subscriber := range subscribers {
 		watch := subscriber.client.WatchConn(context.Background())
 		subscribers[i].watch = watch
-		assert.Assert(t, watch != nil)
+		assert.Nil(t, watch != nil)
 		firstMsg, err := watch.GetWatch(context.Background(), getWatchKey)
-		assert.NilError(t, err)
+		assert.Nil(t, err)
 		assert.Equal(t, firstMsg.Command, "GET.WATCH")
 		channels[i] = watch.Channel()
 	}
 
 	for _, tc := range getWatchTestCases {
 		err := publisher.Set(context.Background(), tc.key, tc.val, 0).Err()
-		assert.NilError(t, err)
+		assert.Nil(t, err)
 
 		for _, channel := range channels {
 			v := <-channel

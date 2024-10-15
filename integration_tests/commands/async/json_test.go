@@ -1472,7 +1472,7 @@ func TestJsonSTRAPPEND(t *testing.T) {
 			assert.Equal(t, "OK", result)
 
 			result = FireCommand(conn, tc.getCmd)
-			assert.DeepEqual(t, tc.expected, result)
+			assert.Equal(t, tc.expected, result)
 
 		})
 	}

@@ -10,7 +10,7 @@ import (
 	"github.com/bytedance/sonic"
 	"github.com/dicedb/dice/internal/clientio"
 	"github.com/dicedb/dice/internal/sql"
-	redis "github.com/dicedb/go-dice"
+	dicedb "github.com/dicedb/dicedb-go"
 	"github.com/stretchr/testify/assert"
 )
 
